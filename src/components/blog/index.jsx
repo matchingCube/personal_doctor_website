@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import JsonData from "../../data/data.json";
+import { useSelector } from "react-redux";
 
 function Blog() {
-  const [blogPageData, setBlogPageData] = useState(JsonData.Learn.Hero);
-  useEffect(() => {
-    setBlogPageData(JsonData.Learn.Hero);
-  }, []);
+  const currentBlogData = useSelector(state => state.currentData.currentBlogData)
   return (
     <div
       className="page-padding"
@@ -32,25 +29,39 @@ function Blog() {
                     ></path>
                   </svg>
                 </div>
-                <span className="subtitle" style={{ fontWeight: 600 }}>ALL POSTS</span>
+                <span className="subtitle" style={{ fontWeight: 600 }}>
+                  ALL POSTS
+                </span>
               </div>
             </Link>
           </div>
           <div className="blog-page-title">
-            {blogPageData ? blogPageData.title : "Loading"}
+            {currentBlogData ? currentBlogData.title : "Loading"}
           </div>
         </div>
       </div>
       <div className="row nomargin">
         <div
           className="blog-page-img"
-          style={{ backgroundImage: `url(${blogPageData.heroImage})` }}
+          style={{ backgroundImage: `url(${currentBlogData.image})` }}
         ></div>
       </div>
-      <div className="row nomargin">
+      <div className="row nomargin" style={{ marginTop: 30 }}>
+        <div className="blog-content-top">
+          <div className="blog-author-wrapper">
+            <div className="margin-right">
+              <div className="blog-author-text">Written by</div>
+              <div className="text-weight-medium">Dr. Alex Chan</div>
+            </div>
+            <div className="margin-right">
+              <div className="blog-author-text">Published on</div>
+              <div className="text-weight-medium">{currentBlogData.date}</div>
+            </div>
+          </div>
+        </div>
         <div className="col-md-4 col-md-offset-4">
           <div className="learn-hero-content">
-            {blogPageData ? blogPageData.content : "Loading"}
+            {currentBlogData ? currentBlogData.content : "Loading"}
           </div>
         </div>
       </div>
