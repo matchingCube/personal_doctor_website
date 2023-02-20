@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentBlogData } from "../../features/currentData/currentData";
-import handleSubmit from "../../handles/handlesubmit";
+import { collection, getDocs, QuerySnapshot } from "firebase/firestore";
+import { firestore } from "../../firebase_setup/firebase";
 
 export const Blog = (props) => {
   const dispatch = useDispatch();
+  const [blogData, setBlogData] = useState([]);
+  const fetchPost = async () => {
+    await getDocs(collection(firestore, "blog_data")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setBlogData(newData);
+    });
+  };
+
+  useEffect(() => {
+    fetchPost();
+  }, []);
 
   return (
     <div id="blog" style={{ marginTop: 200 }}>
       <div className="container">
         <div className="row">
           <MDBRow>
-            {props.data
-              ? props.data.map(function (item, i) {
+            {blogData
+              ? blogData.map(function (item, i) {
                   return (
                     <MDBCol
                       md="6"

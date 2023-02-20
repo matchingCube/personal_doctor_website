@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Blog() {
-  const currentBlogData = useSelector(state => state.currentData.currentBlogData)
+  const currentBlogData = useSelector(
+    (state) => state.currentData.currentBlogData
+  );
+
   return (
     <div
       className="page-padding"
@@ -25,7 +28,7 @@ function Blog() {
                     <path
                       d="M11 13L6 8L11 3"
                       stroke="CurrentColor"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     ></path>
                   </svg>
                 </div>
