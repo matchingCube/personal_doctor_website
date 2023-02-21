@@ -8,6 +8,7 @@ export const currentDataSlice = createSlice({
       image:
         "https://assets.website-files.com/616786a99cb0c53356569c11/62ba38c6e2d0462cf5a9e190__ANA5944.jpg",
       title: "GF Chocolate Coconut Mandarin Muffins",
+      subject: "General",
       content:
         "I’ve been experimenting lately with gluten-free baking. In particular aiming for a good morning muffin that is gluten, dairy and sugar free but still delicious.",
     },
@@ -17,6 +18,7 @@ export const currentDataSlice = createSlice({
       state.currentBlogData.date = action.payload.date;
       state.currentBlogData.image = action.payload.image;
       state.currentBlogData.title = action.payload.title;
+      state.currentBlogData.subject = action.payload.subject;
       state.currentBlogData.content = action.payload.content;
     },
   },

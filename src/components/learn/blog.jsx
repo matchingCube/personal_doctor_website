@@ -45,6 +45,7 @@ export const Blog = (props) => {
                         <div className="blog-contentDiv">
                           <h3 className="blogDate">{item.date}</h3>
                           <h3>{item.title}</h3>
+                          <h5>{item.subject}</h5>
                           <p>{item.content}</p>
                           <Link
                             to="/blog"
@@ -54,6 +55,7 @@ export const Blog = (props) => {
                                   date: item.date,
                                   image: item.image,
                                   title: item.title,
+                                  subject: item.subject,
                                   content: item.content,
                                 })
                               );

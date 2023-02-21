@@ -60,6 +60,10 @@ function Blog() {
               <div className="blog-author-text">Published on</div>
               <div className="text-weight-medium">{currentBlogData.date}</div>
             </div>
+            <div className="margin-right">
+              <div className="blog-author-text">Subject</div>
+              <div className="text-weight-medium">{currentBlogData.subject}</div>
+            </div>
           </div>
         </div>
         <div className="col-md-4 col-md-offset-4">

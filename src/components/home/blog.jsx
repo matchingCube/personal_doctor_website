@@ -41,6 +41,7 @@ export const Blog = (props) => {
                           date: props.data.leftDate,
                           image: props.data.leftImage,
                           title: props.data.leftTitle,
+                          subject: "General",
                           content: props.data.leftContent,
                         })
                       );
@@ -72,6 +73,7 @@ export const Blog = (props) => {
                           date: props.data.rightDate,
                           image: props.data.rightImage,
                           title: props.data.rightTitle,
+                          subject: "General",
                           content: props.data.rightContent,
                         })
                       );
