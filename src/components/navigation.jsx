@@ -49,6 +49,11 @@ export const Navigation = (props) => {
                   <span className="navMenu">Blog</span>
                 </Link>
             </li>
+            <li>
+                <Link to="/book">
+                  <span className="navMenu">Book</span>
+                </Link>
+            </li>
             <li className="flex" style={{ display: "flex", height: 45 }}>
               <div id="socialImages" className="flex">
                 <div className="social-roundBtn">
@@ -102,7 +107,7 @@ export const Navigation = (props) => {
               </div>
             </li>
 
-            <li>
+            <li className="no-after">
               <Link to='/contact'>
                 <span className="contact-roundBtn">Contact</span>
               </Link>

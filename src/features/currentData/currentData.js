@@ -11,6 +11,9 @@ export const currentDataSlice = createSlice({
       subject: "General",
       content:
         "I’ve been experimenting lately with gluten-free baking. In particular aiming for a good morning muffin that is gluten, dairy and sugar free but still delicious.",
+      thumb_up: 0,
+      thumb_down: 0,
+      id: "",
     },
   },
   reducers: {
@@ -20,10 +23,20 @@ export const currentDataSlice = createSlice({
       state.currentBlogData.title = action.payload.title;
       state.currentBlogData.subject = action.payload.subject;
       state.currentBlogData.content = action.payload.content;
+      state.currentBlogData.thumb_up = action.payload.thumb_up;
+      state.currentBlogData.thumb_down = action.payload.thumb_down;
+      state.currentBlogData.id = action.payload.blog_id;
+    },
+    addThumbUp: (state) => {
+      state.currentBlogData.thumb_up += 1;
+    },
+    addThumbDown: (state) => {
+      state.currentBlogData.thumb_down += 1;
     },
   },
 });
 
-export const { setCurrentBlogData } = currentDataSlice.actions;
+export const { setCurrentBlogData, addThumbUp, addThumbDown } =
+  currentDataSlice.actions;
 
 export default currentDataSlice.reducer;

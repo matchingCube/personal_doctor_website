@@ -3,7 +3,7 @@ import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentBlogData } from "../../features/currentData/currentData";
-import { collection, getDocs, QuerySnapshot } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../firebase_setup/firebase";
 
 export const Blog = (props) => {
@@ -46,7 +46,9 @@ export const Blog = (props) => {
                           <h3 className="blogDate">{item.date}</h3>
                           <h3>{item.title}</h3>
                           <h5>{item.subject}</h5>
-                          <p>{item.content}</p>
+                          <p style={{ maxHeight: 90, overflowY: "hidden" }}>
+                            {item.content}
+                          </p>
                           <Link
                             to="/blog"
                             onClick={() => {
@@ -57,6 +59,9 @@ export const Blog = (props) => {
                                   title: item.title,
                                   subject: item.subject,
                                   content: item.content,
+                                  thumb_up: item.thumbUp,
+                                  thumb_down: item.thumbDown,
+                                  blog_id: item.id,
                                 })
                               );
                             }}

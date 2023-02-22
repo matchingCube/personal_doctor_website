@@ -1,11 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addThumbUp,
+  addThumbDown,
+} from "../../features/currentData/currentData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+import { Button } from "react-bootstrap";
+import { firestore } from "../../firebase_setup/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 function Blog() {
   const currentBlogData = useSelector(
     (state) => state.currentData.currentBlogData
   );
+  const dispatch = useDispatch();
+  const updateThumbUp = async (e) => {
+    e.preventDefault();
+    const updateRef = doc(firestore, "blog_data", currentBlogData.id);
+    await updateDoc(updateRef, { thumbUp: currentBlogData.thumb_up + 1 })
+      .then((res) => {
+        console.log("thumbUp updated to: ", currentBlogData.thumb_up + 1);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+  const updateThumbDown = async (e) => {
+    e.preventDefault();
+    const updateRef = doc(firestore, "blog_data", currentBlogData.id);
+    await updateDoc(updateRef, { thumbDown: currentBlogData.thumb_down + 1 })
+      .then((res) => {
+        console.log("thumbDown updated to: ", currentBlogData.thumb_down + 1);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <div
@@ -62,12 +94,42 @@ function Blog() {
             </div>
             <div className="margin-right">
               <div className="blog-author-text">Subject</div>
-              <div className="text-weight-medium">{currentBlogData.subject}</div>
+              <div className="text-weight-medium">
+                {currentBlogData.subject}
+              </div>
+            </div>
+          </div>
+          <div className="blog-author-wrapper">
+            <div className="margin-right d-flex align-items-center">
+              <Button
+                variant="success"
+                style={{ marginRight: 10 }}
+                onClick={(e) => {
+                  dispatch(addThumbUp());
+                  updateThumbUp(e);
+                }}
+              >
+                <FontAwesomeIcon icon={faThumbsUp} />
+              </Button>
+              <span>{currentBlogData.thumb_up}</span>
+            </div>
+            <div className="margin-right d-flex align-items-center">
+              <Button
+                variant="warning"
+                style={{ marginRight: 10 }}
+                onClick={(e) => {
+                  dispatch(addThumbDown());
+                  updateThumbDown(e);
+                }}
+              >
+                <FontAwesomeIcon icon={faThumbsDown} />
+              </Button>
+              <span>{currentBlogData.thumb_down}</span>
             </div>
           </div>
         </div>
-        <div className="col-md-4 col-md-offset-4">
-          <div className="learn-hero-content">
+        <div className="col-md-9">
+          <div className="learn-hero-content" style={{ textAlign: "left" }}>
             {currentBlogData ? currentBlogData.content : "Loading"}
           </div>
         </div>
