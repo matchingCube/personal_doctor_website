@@ -50,7 +50,7 @@ export const Blog = (props) => {
                             {item.content}
                           </p>
                           <Link
-                            to="/blog"
+                            to={`/blog/${item.id}`}
                             onClick={() => {
                               dispatch(
                                 setCurrentBlogData({

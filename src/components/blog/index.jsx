@@ -134,6 +134,44 @@ function Blog() {
           </div>
         </div>
       </div>
+      <div className="row nomargin" style={{ marginTop: 30 }}>
+        <div className="margin-auto" style={{ maxWidth: 1400 }}>
+          <div className="social-wrapper">
+            <a
+              className="social-box"
+              href="https://www.instagram.com/dralexchan/"
+            >
+              <img
+                src="https://assets.website-files.com/616786a99cb0c574cc569c06/616786a99cb0c520c1569c64_DRK-instagram.svg"
+                alt="instagram share"
+                className="social-image large"
+              />
+            </a>
+            <a
+              className="social-box"
+              href={`https://www.facebook.com/sharer/sharer.php?u=your_website_domain/blog/${currentBlogData.id}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="https://assets.website-files.com/616786a99cb0c574cc569c06/616786a99cb0c50fea569c62_DRK-facebook-f.svg"
+                alt="facebook share"
+                className="social-image large"
+              />
+            </a>
+            <a
+              className="social-box"
+              href="https://www.linkedin.com/in/alex-chan-a12196214/?originalSubdomain=ca"
+            >
+              <img
+                src="https://assets.website-files.com/616786a99cb0c574cc569c06/616786a99cb0c54f40569c65_DRK-linkedin-2.svg"
+                alt="linkedin share"
+                className="social-image large"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -15,6 +15,7 @@ export const currentDataSlice = createSlice({
       thumb_down: 0,
       id: "",
     },
+    blogIdList: [],
   },
   reducers: {
     setCurrentBlogData: (state, action) => {
@@ -33,10 +34,13 @@ export const currentDataSlice = createSlice({
     addThumbDown: (state) => {
       state.currentBlogData.thumb_down += 1;
     },
+    setBlogIdList: (state, action) => {
+      state.blogIdList = action.payload;
+    },
   },
 });
 
-export const { setCurrentBlogData, addThumbUp, addThumbDown } =
+export const { setCurrentBlogData, addThumbUp, addThumbDown, setBlogIdList } =
   currentDataSlice.actions;
 
 export default currentDataSlice.reducer;
